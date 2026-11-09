@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "crewai-incident-collaboration"
+version = "0.1.0"
+description = "Learn CrewAI with a three-agent incident investigation"
+requires-python = ">=3.11,<3.14"
+dependencies = ["crewai==1.15.39", "python-dotenv>=1.0,<2"]
+
+[project.scripts]
+incident-crew = "incident_crew.main:main"
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "ruff>=0.14,<1"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/incident_crew"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
